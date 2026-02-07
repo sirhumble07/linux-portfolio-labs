@@ -136,3 +136,104 @@ A **production-style mini SaaS** that connects Linux, Azure, and DevOps into one
 - Results stored and displayed in a dashboard
 
 ### Architecture
+
+Internet
+|
+Nginx (reverse proxy + UI)
+|
+FastAPI (authentication + API)
+|
+Postgres (persistent data)
+|
+Worker (scheduled checks)
+
+### Technologies Used
+
+- FastAPI (Python)
+- PostgreSQL
+- Background worker
+- Docker Compose
+- Nginx
+- GitHub Actions
+- Azure Virtual Machine
+
+### Why This Project Matters
+
+Demonstrates:
+
+- Multi-container orchestration
+- Stateful services
+- Scheduled background processing
+- Reverse proxy routing
+- CI/CD deployment to cloud infrastructure
+
+✅ Proves **end-to-end system ownership**.
+
+---
+
+## 🔁 CI/CD Flow
+
+1. Code pushed to GitHub
+2. GitHub Actions triggers
+3. Self-hosted Linux runner executes pipeline
+4. Runner SSHs into Azure VM
+5. VM pulls latest code
+6. Docker Compose rebuilds and restarts services
+
+No abstractions. No shortcuts. **Real infrastructure behavior**.
+
+---
+
+## 🔐 Security & Best Practices
+
+- SSH key-based authentication
+- Password logins disabled
+- Firewall-restricted access
+- fail2ban intrusion prevention
+- Secrets excluded from Git
+- Container isolation
+- Idempotent scripts
+
+---
+
+## 📌 How to Use This Repo
+
+Each lab includes:
+
+- `README.md` — what and why
+- `steps.md` — how to build
+- `cleanup.md` — safe teardown
+
+Everything is:
+
+- Reproducible
+- Auditable
+- Production-aligned
+
+---
+
+## 🧭 What This Portfolio Demonstrates
+
+✔ Linux fundamentals  
+✔ Azure cloud infrastructure  
+✔ DevOps automation  
+✔ Security awareness  
+✔ Real application deployment  
+✔ Structured problem-solving  
+
+---
+
+## 🧩 Future Extensions (Optional)
+
+- HTTPS with Let’s Encrypt
+- Terraform or Bicep
+- Kubernetes version
+- Prometheus & Grafana
+- Azure Key Vault integration
+
+---
+
+### Final Note
+
+This repository is **not a tutorial dump**.  
+It is a **real engineering portfolio** showing how systems work end to end.
