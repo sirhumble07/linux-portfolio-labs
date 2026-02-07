@@ -18,7 +18,7 @@ Nearly every Linux sysadmin role requires you to:
 - Ensure only the right people can access the right data
 - Fix permission issues quickly under pressure
 
-## Skills you will demonstrate
+## Skills Demonstrated
 
 - User/group lifecycle: `useradd`, `usermod`, `groupadd`, `id`
 - Permissions: `chmod`, `chown`, setgid bit
@@ -58,3 +58,27 @@ Nearly every Linux sysadmin role requires you to:
 
 - Add fail2ban and SSH hardening
 - Add centralized auth (LDAP/FreeIPA) later
+
+## Goal
+
+Build a multi-user Linux access model that mirrors real organizations:
+
+- Developers can collaborate in shared directories
+- Auditors can read but not write
+- Sudo access is controlled via `/etc/sudoers.d` (safe practice)
+
+## Validation Evidence Checklist
+
+- [ ] `getent group devs` and `getent group auditors`
+- [ ] `id dev1` includes `devs`
+- [ ] `id audit1` includes `auditors`
+- [ ] `ls -ld /srv/projects/app1` shows `drwxrws---`
+- [ ] `getfacl /srv/projects/app1` shows auditors `rx` + default ACL
+- [ ] `dev1` can create file in `/srv/projects/app1`
+- [ ] `audit1` can read but cannot create file
+- [ ] `sudo visudo -c` passes
+
+## Screenshots Folder
+
+Store proof screenshots in:
+`assets/screenshots/`

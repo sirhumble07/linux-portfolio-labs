@@ -1,6 +1,12 @@
-# Lab 03: Backups, Cron, Rsync & Rotation - Step-by-Step Guide
+# Steps — Automated Backups: cron + rsync + Logging + Restore Test
 
-## Step 1: Prepare Backup Environment
+## 1) Prepare
+
+```bash
+sudo apt update
+sudo apt -y install rsync
+sudo mkdir -p /backup/logs
+
 
 ### 1.1 Create Directory Structure
 

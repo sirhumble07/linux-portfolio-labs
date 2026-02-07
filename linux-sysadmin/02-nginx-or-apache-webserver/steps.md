@@ -1,12 +1,15 @@
-# Lab 02: NGINX or Apache Web Server - Step-by-Step Guide
+# Steps — Linux Web Server: Nginx/Apache Deployment + Firewall Hardening
 
-## Choose Your Path
+## 1) Prepare
 
-This lab provides instructions for both NGINX and Apache. Choose one to complete the lab.
+```bash
+sudo apt update
+sudo apt -y install nginx
+
 
 ---
 
-# Option A: NGINX Setup
+## Option A: NGINX Setup
 
 ## Step 1: Install NGINX
 
@@ -30,7 +33,7 @@ sudo systemctl enable nginx
 sudo systemctl status nginx
 ```
 
-### 1.4 Configure Firewall
+### 1.4 Configure Firewall for NGINX
 
 ```bash
 sudo ufw allow 'Nginx Full'
@@ -45,23 +48,23 @@ sudo ufw status
 nginx -v
 ```
 
-### 2.2 Test Default Page
+### 2.2 Test NGINX Default Page
 
 ```bash
 curl localhost
 # Or open browser to http://your-server-ip
 ```
 
-## Step 3: Create Virtual Hosts
+## Step 3: Create NGINX Server Blocks
 
-### 3.1 Create Directory Structure
+### 3.1 Create Directory Structure for NGINX
 
 ```bash
 sudo mkdir -p /var/www/site1.example.com/html
 sudo mkdir -p /var/www/site2.example.com/html
 ```
 
-### 3.2 Set Permissions
+### 3.2 Set Permissions for NGINX
 
 ```bash
 sudo chown -R $USER:$USER /var/www/site1.example.com/html
@@ -69,7 +72,7 @@ sudo chown -R $USER:$USER /var/www/site2.example.com/html
 sudo chmod -R 755 /var/www
 ```
 
-### 3.3 Create Sample Pages
+### 3.3 Create Sample Pages for NGINX
 
 ```bash
 cat > /var/www/site1.example.com/html/index.html << 'EOF'
@@ -99,7 +102,7 @@ cat > /var/www/site2.example.com/html/index.html << 'EOF'
 EOF
 ```
 
-### 3.4 Create Server Blocks
+### 3.4 Create NGINX Server Blocks
 
 ```bash
 sudo nano /etc/nginx/sites-available/site1.example.com
@@ -151,7 +154,7 @@ server {
 }
 ```
 
-### 3.5 Enable Sites
+### 3.5 Enable NGINX Sites
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/site1.example.com /etc/nginx/sites-enabled/
@@ -165,15 +168,15 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## Step 4: Configure SSL/TLS
+## Step 4: Configure SSL/TLS for NGINX
 
-### 4.1 Install Certbot
+### 4.1 Install Certbot for NGINX
 
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
 ```
 
-### 4.2 Obtain SSL Certificate (if you have a domain)
+### 4.2 Obtain SSL Certificate for NGINX (if you have a domain)
 
 ```bash
 sudo certbot --nginx -d site1.example.com -d www.site1.example.com
@@ -190,7 +193,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
 ```
 
-### 4.4 Configure SSL in Server Block
+### 4.4 Configure SSL in NGINX Server Block
 
 ```bash
 sudo nano /etc/nginx/sites-available/site1.example.com
@@ -228,7 +231,7 @@ server {
 }
 ```
 
-### 4.5 Test and Reload
+### 4.5 Test and Reload NGINX
 
 ```bash
 sudo nginx -t
@@ -237,7 +240,7 @@ sudo systemctl reload nginx
 
 ## Step 5: Security Hardening
 
-### 5.1 Add Security 
+### 5.1 Add Security
 
 ```bash
 sudo nano /etc/nginx/conf.d/security-headers.conf
@@ -265,7 +268,7 @@ Add in http block:
 server_tokens off;
 ```
 
-### 5.3 Configure Rate Limiting
+### 5.3 Configure NGINX Rate Limiting
 
 ```bash
 sudo nano /etc/nginx/nginx.conf
@@ -284,9 +287,9 @@ In server block:
 limit_req zone=one burst=20 nodelay;
 ```
 
-## Step 6: Performance Optimization
+## Step 6: NGINX Performance Optimization
 
-### 6.1 Enable Gzip Compression
+### 6.1 Enable Gzip Compression in NGINX
 
 ```bash
 sudo nano /etc/nginx/nginx.conf
@@ -302,7 +305,7 @@ gzip_comp_level 6;
 gzip_types text/plain text/css text/xml text/javascript application/json application/javascript application/xml+rss application/rss+xml font/truetype font/opentype application/vnd.ms-fontobject image/svg+xml;
 ```
 
-### 6.2 Configure Caching
+### 6.2 Configure NGINX Caching
 
 ```bash
 sudo nano /etc/nginx/sites-available/site1.example.com
@@ -330,16 +333,16 @@ worker_processes auto;
 worker_connections 1024;
 ```
 
-## Step 7: Monitoring and Logging
+## Step 7: NGINX Monitoring and Logging
 
-### 7.1 Enable Access Logs
+### 7.1 View NGINX Access Logs
 
 ```bash
 tail -f /var/log/nginx/access.log
 tail -f /var/log/nginx/error.log
 ```
 
-### 7.2 Configure Log Format
+### 7.2 Configure NGINX Log Format
 
 ```bash
 sudo nano /etc/nginx/nginx.conf
@@ -353,7 +356,7 @@ log_format main '$remote_addr - $remote_user [$time_local] "$request" '
                 '"$http_user_agent" "$http_x_forwarded_for"';
 ```
 
-### 7.3 Configure Logrotate
+### 7.3 Configure NGINX Logrotate
 
 ```bash
 sudo nano /etc/logrotate.d/nginx
@@ -378,11 +381,11 @@ Verify configuration includes:
 
 ---
 
-# Option B: Apache Setup
+## Option B: Apache Setup
 
 ## Step 1: Install Apache
 
-### 1.1 Update System
+### 1.1 Update System (Apache)
 
 ```bash
 sudo apt update
@@ -409,7 +412,7 @@ sudo ufw allow 'Apache Full'
 sudo ufw status
 ```
 
-## Step 2: Verify Installation
+## Step 2: Verify Apache Installation
 
 ### 2.1 Check Apache Version
 
@@ -456,7 +459,7 @@ cat > /var/www/site1.example.com/html/index.html << 'EOF'
 EOF
 ```
 
-### 3.4 Create Virtual Host Configuration
+### 3.4 Create Apache Virtual Host Configuration
 
 ```bash
 sudo nano /etc/apache2/sites-available/site1.example.com.conf
@@ -482,7 +485,7 @@ Add:
 </VirtualHost>
 ```
 
-### 3.5 Enable Site and Modules
+### 3.5 Enable Apache Site and Modules
 
 ```bash
 sudo a2ensite site1.example.com.conf
@@ -492,15 +495,15 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
 
-## Step 4: Configure SSL/TLS
+## Step 4: Configure SSL/TLS for Apache
 
-### 4.1 Install Certbot
+### 4.1 Install Certbot for Apache
 
 ```bash
 sudo apt install certbot python3-certbot-apache -y
 ```
 
-### 4.2 Create Self-Signed Certificate
+### 4.2 Create Self-Signed Certificate for Apache
 
 ```bash
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -532,14 +535,14 @@ Add:
 </VirtualHost>
 ```
 
-### 4.4 Enable SSL Site
+### 4.4 Enable Apache SSL Site
 
 ```bash
 sudo a2ensite site1.example.com-ssl.conf
 sudo systemctl reload apache2
 ```
 
-## Step 5: Security Hardening
+## Step 5: Apache Security Hardening
 
 ### 5.1 Enable Security Modules
 
@@ -548,7 +551,7 @@ sudo a2enmod headers
 sudo a2enmod security2
 ```
 
-### 5.2 Configure Security Headers
+### 5.2 Configure Apache Security Headers
 
 ```bash
 sudo nano /etc/apache2/conf-available/security.conf
@@ -564,7 +567,7 @@ ServerTokens Prod
 ServerSignature Off
 ```
 
-### 5.3 Enable Configuration
+### 5.3 Enable Apache Security Configuration
 
 ```bash
 sudo a2enconf security
