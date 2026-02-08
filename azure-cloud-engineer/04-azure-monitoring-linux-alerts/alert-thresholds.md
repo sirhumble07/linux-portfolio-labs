@@ -37,7 +37,7 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 - **85-90%**: Less sensitive, acceptable for dev/test environments
 - **95%**: Only for detection of extreme conditions (near saturation)
 
-### When to Adjust
+### When to Adjust CPU Thresholds
 
 ✅ **Lower threshold (60-70%)** if:
 
@@ -108,7 +108,7 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 **Severity Levels**:
 
 | Disk Usage | Severity | Action |
-|------------|----------|--------|
+| ---------- | -------- | ------ |
 | **< 70%** | Normal | No action |
 | **70-85%** | Warning | Monitor, plan cleanup |
 | **85-90%** | Alert | **This lab's threshold** - Investigate and remediate |
@@ -121,9 +121,10 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 - **90%**: More aggressive, suitable if automated cleanup exists
 - **Use Available Bytes instead**: e.g., "Alert when < 5GB free" (absolute value)
 
-### When to Adjust
+### When to Adjust Disk Thresholds
 
 ✅ **Lower threshold (75-80%)** if:
+
 - Disk cleanup is manual and slow
 - Application writes large files unpredictably
 - System is production-critical
