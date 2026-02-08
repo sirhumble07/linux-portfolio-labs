@@ -1,4 +1,4 @@
-# Alert Thresholds and Justifications — Lab 04
+# Alert Thresholds and Justifications - Lab 04
 
 ## Understanding Alert Thresholds
 
@@ -11,10 +11,10 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 
 ## CPU Alert: Percentage CPU
 
-### Threshold Configuration
+### CPU Threshold Configuration
 
 | Parameter | Value | Reasoning |
-|-----------|-------|-----------|
+| --------- | ----- | --------- |
 | **Metric** | Percentage CPU | Standard CPU utilization metric |
 | **Operator** | Greater than | Alerts when CPU exceeds threshold |
 | **Threshold** | 80% | Industry standard for high CPU |
@@ -40,11 +40,13 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 ### When to Adjust
 
 ✅ **Lower threshold (60-70%)** if:
+
 - Application is latency-sensitive (e.g., real-time systems)
 - VM is production-critical
 - Historical data shows performance degradation at lower CPU
 
 ✅ **Higher threshold (85-90%)** if:
+
 - Application can tolerate high CPU briefly
 - Cost optimization is priority (run hotter)
 - Historical data shows no issues at higher CPU
@@ -62,6 +64,7 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 - **Actionable**: Gives time to investigate before critical impact
 
 **Alternatives**:
+
 - **1-2 minutes**: For highly sensitive systems needing immediate response
 - **10-15 minutes**: For workloads with expected CPU variations
 
@@ -74,6 +77,7 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 - **Reduces false positives**: Temporary bursts don't cause alerts
 
 **Alternatives**:
+
 - **Maximum**: Alerts if CPU ever hits threshold (more sensitive, more false positives)
 - **Minimum**: Rarely used for CPU (useful for detecting idle/hung processes)
 
@@ -81,10 +85,10 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 
 ## Disk Usage Alert
 
-### Threshold Configuration
+### Disk Threshold Configuration
 
 | Parameter | Value | Reasoning |
-|-----------|-------|-----------|
+| --------- | ----- | --------- |
 | **Metric** | Disk Used % (or Available Bytes) | Disk space utilization |
 | **Operator** | Greater than | Alerts when disk usage exceeds threshold |
 | **Threshold** | 85% | Standard for disk space warnings |
@@ -125,6 +129,7 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 - System is production-critical
 
 ✅ **Higher threshold (90%)** if:
+
 - Automated cleanup scripts exist
 - Disk can be expanded quickly (cloud auto-scaling)
 - Historical data shows no issues at higher usage
@@ -133,10 +138,10 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 
 ## Memory Alert (Optional/Recommended)
 
-### Threshold Configuration
+### Memory Threshold Configuration
 
 | Parameter | Value | Reasoning |
-|-----------|-------|-----------|
+| --------- | ----- | --------- |
 | **Metric** | Available Memory Bytes | Actual free memory |
 | **Operator** | Less than | Alerts when memory drops below threshold |
 | **Threshold** | 200 MB (or 10% of total) | Minimum for stable operation |
@@ -164,13 +169,14 @@ Alert thresholds define the **trigger points** for generating alerts based on me
 ### Inbound/Outbound Bytes
 
 | Parameter | Value | Reasoning |
-|-----------|-------|-----------|
+| --------- | ----- | --------- |
 | **Metric** | Network In/Out Total | Bandwidth usage |
 | **Operator** | Greater than | Detect unusual traffic |
 | **Threshold** | 100 MB/min (baseline + 50%) | Depends on normal traffic |
 | **Aggregation** | Total | Sum of bytes over period |
 
 **Use Cases**:
+
 - **DDoS Detection**: Sudden spike in inbound traffic
 - **Data Exfiltration**: Unusual outbound traffic
 - **Cost Management**: High bandwidth = high egress charges
@@ -195,6 +201,7 @@ az monitor metrics list \
 ```
 
 **Analysis**:
+
 - **Normal operation**: What's the average and max during normal load?
 - **Peak hours**: What's the 95th percentile during busy times?
 - **Off-hours**: What's the baseline when idle?
@@ -211,6 +218,7 @@ Instead of "CPU > 80% triggers alert", consider:
 - **P99 over 5 min > 90%**: Alerts only if nearly all samples are high
 
 Azure Monitor uses **aggregation** for this:
+
 - **Average**: Good for sustained load
 - **Maximum**: Sensitive to brief spikes
 - **Minimum**: Useful for detecting idle/stuck processes
@@ -222,7 +230,7 @@ Azure Monitor uses **aggregation** for this:
 Instead of one alert, use multiple severity levels:
 
 | Severity | CPU Threshold | Disk Threshold | Action |
-|----------|---------------|----------------|--------|
+| -------- | ------------- | -------------- | ------ |
 | **Informational** | 60% | 70% | Log only, no notification |
 | **Warning** | 70% | 80% | Email to team |
 | **Critical** | 80% | 90% | Email + SMS + Runbook |
@@ -342,12 +350,13 @@ For production environments:
 
 ## Summary: Lab Threshold Choices
 
-| Metric | Threshold | Time Window | Aggregation | Justification |
-|--------|-----------|-------------|-------------|---------------|
-| **CPU** | 80% | 5 minutes | Average | Standard for sustained high CPU, filters brief spikes |
-| **Disk** | 85% | 5 minutes | Average | Critical level with safe margin, time to remediate |
+| Metric   | Threshold | Time Window | Aggregation | Justification                                          |
+| -------- | --------- | ----------- | ----------- | ------------------------------------------------------ |
+| **CPU**  | 80%       | 5 minutes   | Average     | Standard for sustained high CPU, filters brief spikes  |
+| **Disk** | 85%       | 5 minutes   | Average     | Critical level with safe margin, time to remediate     |
 
 These thresholds balance:
+
 - **Sensitivity**: Catch real problems
 - **Specificity**: Avoid false alarms
 - **Actionability**: Give time to respond
