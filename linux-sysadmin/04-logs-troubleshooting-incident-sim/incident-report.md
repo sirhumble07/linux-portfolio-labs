@@ -13,13 +13,13 @@ NGINX web server failed to start due to configuration errors in `/etc/nginx/ngin
 
 ## Timeline
 
-- **Dec 17 08:26:44** - NGINX service started successfully
-- **Dec 22 14:08:55** - NGINX service stopped
-- **Jan 04 21:01:53** - NGINX service restarted successfully
-- **Feb 07 01:56:31** - Configuration reload attempted, failed with "No such file or directory" error for `/etc/nginx/sites-enabled/labsite`
-- **Feb 07 02:07:27** - NGINX reloaded successfully
-- **Feb 07 04:58:24** - NGINX failed to start; unknown directive "this_is_invalid" found in `/etc/nginx/sites-enabled/labsite2`
-- **Feb 07 04:58:24** - Configuration test failed, service entered failed state
+- **08:26:44** - NGINX service started successfully
+- **14:08:55** - NGINX service stopped
+- **21:01:53** - NGINX service restarted successfully
+- **01:56:31** - Configuration reload attempted, failed with "No such file or directory" error for `/etc/nginx/sites-enabled/labsite`
+- **02:07:27** - NGINX reloaded successfully
+- **04:58:24** - NGINX failed to start; unknown directive "this_is_invalid" found in `/etc/nginx/sites-enabled/labsite2`
+- **04:58:24** - Configuration test failed, service entered failed state
 
 ## Root Cause
 
