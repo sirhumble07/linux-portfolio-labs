@@ -8,21 +8,22 @@ NSGs act as virtual firewalls, controlling inbound and outbound traffic at the s
 
 ## Management Subnet NSG (`nsg-mgmt`)
 
-### Inbound Rules
+### Inbound Rules (Management Subnet)
 
-| Priority | Name | Port | Protocol | Source | Destination | Action | Purpose |
-|----------|------|------|----------|--------|-------------|--------|---------|
-| 100 | AllowSSHFromMyIP | 22 | TCP | My IP Address | 10.10.1.0/24 | Allow | Admin SSH access |
-| 65000 | DenyAllInbound | * | * | Any | Any | Deny | Default deny rule |
+| Priority | Name                 | Port | Protocol | Source        | Destination  | Action | Purpose           |
+|----------|----------------------|------|----------|---------------|--------------|--------|-------------------|
+| 100      | AllowSSHFromMyIP     | 22   | TCP      | My IP Address | 10.10.1.0/24 | Allow  | Admin SSH access  |
+| 65000    | DenyAllInbound       | *    | *        | Any           | Any          | Deny   | Default deny rule |
 
-### Outbound Rules
+### Outbound Rules (Management Subnet)
 
-| Priority | Name | Port | Protocol | Source | Destination | Action | Purpose |
-|----------|------|------|----------|--------|-------------|--------|---------|
-| 65000 | AllowInternetOutbound | * | * | Any | Internet | Allow | Allow internet access |
-| 65001 | AllowVNetOutbound | * | * | VirtualNetwork | VirtualNetwork | Allow | Allow VNet traffic |
+| Priority | Name                  | Port | Protocol | Source         | Destination    | Action | Purpose                |
+|----------|-----------------------|------|----------|----------------|----------------|--------|------------------------|
+| 65000    | AllowInternetOutbound | *    | *        | Any            | Internet       | Allow  | Allow internet access  |
+| 65001    | AllowVNetOutbound     | *    | *        | VirtualNetwork | VirtualNetwork | Allow  | Allow VNet traffic     |
 
 **Key Points**:
+
 - SSH is restricted to **your specific IP address only**
 - All other inbound traffic is denied by default
 - VMs can reach the internet and other VNet resources
@@ -31,23 +32,24 @@ NSGs act as virtual firewalls, controlling inbound and outbound traffic at the s
 
 ## Web Subnet NSG (`nsg-web`)
 
-### Inbound Rules
+### Inbound Rules (Web Subnet)
 
-| Priority | Name | Port | Protocol | Source | Destination | Action | Purpose |
-|----------|------|------|----------|--------|-------------|--------|---------|
-| 100 | AllowHTTPFromInternet | 80 | TCP | Internet | 10.10.2.0/24 | Allow | Public web access |
-| 110 | AllowSSHFromMgmt | 22 | TCP | 10.10.1.0/24 | 10.10.2.0/24 | Allow | Admin access from mgmt |
-| 120 | DenySSHFromInternet | 22 | TCP | Internet | 10.10.2.0/24 | Deny | Block public SSH |
-| 65000 | DenyAllInbound | * | * | Any | Any | Deny | Default deny rule |
+| Priority | Name                  | Port | Protocol | Source       | Destination  | Action | Purpose                |
+|----------|-----------------------|------|----------|--------------|--------------|--------|------------------------|
+| 100      | AllowHTTPFromInternet | 80   | TCP      | Internet     | 10.10.2.0/24 | Allow  | Public web access      |
+| 110      | AllowSSHFromMgmt      | 22   | TCP      | 10.10.1.0/24 | 10.10.2.0/24 | Allow  | Admin access from mgmt |
+| 120      | DenySSHFromInternet   | 22   | TCP      | Internet     | 10.10.2.0/24 | Deny   | Block public SSH       |
+| 65000    | DenyAllInbound        | *    | *        | Any          | Any          | Deny   | Default deny rule      |
 
-### Outbound Rules
+### Outbound Rules (Web Subnet)
 
-| Priority | Name | Port | Protocol | Source | Destination | Action | Purpose |
-|----------|------|------|----------|--------|-------------|--------|---------|
-| 65000 | AllowInternetOutbound | * | * | Any | Internet | Allow | Allow internet access |
-| 65001 | AllowVNetOutbound | * | * | VirtualNetwork | VirtualNetwork | Allow | Allow VNet traffic |
+| Priority | Name                  | Port | Protocol | Source         | Destination    | Action | Purpose               |
+|----------|-----------------------|------|----------|----------------|----------------|--------|-----------------------|
+| 65000    | AllowInternetOutbound | *    | *        | Any            | Internet       | Allow  | Allow internet access |
+| 65001    | AllowVNetOutbound     | *    | *        | VirtualNetwork | VirtualNetwork | Allow  | Allow VNet traffic    |
 
 **Key Points**:
+
 - HTTP (port 80) is open to the **internet** for public access
 - SSH from internet is **explicitly denied**
 - SSH from management subnet (10.10.1.0/24) is **allowed**
@@ -83,6 +85,7 @@ If priority 120 was set to 100, it would block ALL SSH including from mgmt subne
 ### Test 1: HTTP Access (Should Work)
 
 From your laptop:
+
 ```bash
 curl http://<web-vm-public-ip>
 ```
@@ -94,6 +97,7 @@ curl http://<web-vm-public-ip>
 ### Test 2: Direct SSH to Web VM (Should Fail)
 
 From your laptop:
+
 ```bash
 ssh azureuser@<web-vm-public-ip>
 ```
@@ -105,11 +109,13 @@ ssh azureuser@<web-vm-public-ip>
 ### Test 3: SSH via Jump Box (Should Work)
 
 From mgmt VM:
+
 ```bash
 ssh azureuser@<web-vm-private-ip>
 ```
 
 Or use SSH ProxyJump from your laptop:
+
 ```bash
 ssh -J azureuser@<mgmt-vm-public-ip> azureuser@<web-vm-private-ip>
 ```
@@ -205,6 +211,7 @@ Service tags represent groups of IP addresses for Azure services:
 - **AzureMonitor**: Azure Monitor IPs
 
 **Example**: Allow only Azure services to access a resource:
+
 ```text
 Source: AzureMonitor
 Destination: VirtualNetwork
@@ -239,6 +246,7 @@ Internal → Data subnet (Database)
 ### Problem: Can't SSH to VM
 
 **Check**:
+
 1. NSG has Allow rule for SSH (port 22)
 2. Rule priority is correct (not blocked by higher-priority deny)
 3. Source IP is correct (check your current IP with `curl ifconfig.me`)
@@ -248,6 +256,7 @@ Internal → Data subnet (Database)
 ### Problem: Web traffic not reaching VM
 
 **Check**:
+
 1. NSG allows port 80/443
 2. Web server is running (`systemctl status nginx`)
 3. Web server is listening on correct port (`ss -tuln | grep :80`)
@@ -258,6 +267,7 @@ Internal → Data subnet (Database)
 Portal: VM → Networking → Network Interface → Effective security rules
 
 CLI:
+
 ```bash
 az network nic list-effective-nsg \
   --resource-group rg-azure-networking-linux-uks \
@@ -269,6 +279,7 @@ az network nic list-effective-nsg \
 ## Security Best Practices
 
 ✅ **Do**:
+
 - Use specific IP ranges instead of "Any" when possible
 - Document the purpose of each rule
 - Regularly review and remove unused rules
@@ -276,6 +287,7 @@ az network nic list-effective-nsg \
 - Implement least privilege (deny by default)
 
 ❌ **Don't**:
+
 - Allow SSH (22) from `0.0.0.0/0` (Internet) in production
 - Use priority conflicts (rules that contradict each other)
 - Leave default "Allow All" rules in production

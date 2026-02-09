@@ -11,6 +11,7 @@
 5. Click **Delete**
 
 **Resources deleted**:
+
 - Virtual Machine
 - Network Interface
 - Public IP Address
@@ -170,12 +171,14 @@ If you received email notifications during the lab:
 If you created a Log Analytics workspace for this lab:
 
 ### Portal
+
 1. Navigate to **Log Analytics workspaces**
 2. Select your workspace
 3. Click **Delete**
 4. Confirm deletion
 
 ### CLI
+
 ```bash
 az monitor log-analytics workspace delete \
   --resource-group rg-monitoring-linux-uks \
@@ -193,17 +196,18 @@ az monitor log-analytics workspace delete \
 
 - **VM**: Standard compute and storage charges
 - **Azure Monitor Metrics**: First 10 metrics per VM are free
-- **Alert Rules**: 
+- **Alert Rules**:
   - First 10 metric alerts are free
   - $0.10/month per alert rule after that
 - **Action Groups**: Free
 - **Email Notifications**: Free
-- **Log Analytics** (if used): 
+- **Log Analytics** (if used):
   - First 5GB/month free
   - $2.76/GB after that
 - **VM Insights**: Data ingestion charges apply (per GB)
 
 **To avoid charges**: Delete all resources when lab is complete, especially:
+
 - VMs and disks
 - Alert rules (beyond free tier)
 - Log Analytics workspace (if created)
@@ -217,15 +221,19 @@ az monitor log-analytics workspace delete \
 **Cause**: May be in fired state or have dependencies
 
 **Solution**:
+
 1. Wait a few minutes for alerts to resolve
 2. Disable alert rule before deletion:
+
    ```bash
    az monitor metrics alert update \
      --resource-group rg-monitoring-linux-uks \
      --name <alert-name> \
      --enabled false
    ```
+
 3. Then delete:
+
    ```bash
    az monitor metrics alert delete \
      --resource-group rg-monitoring-linux-uks \
@@ -237,6 +245,7 @@ az monitor log-analytics workspace delete \
 **Cause**: Action group not fully deleted or cached
 
 **Solution**:
+
 1. Verify deletion in portal: Azure Monitor → Action groups
 2. Check email for unsubscribe link if notifications continue
 3. Wait 5-10 minutes for changes to propagate
@@ -246,6 +255,7 @@ az monitor log-analytics workspace delete \
 **Cause**: Locks or dependencies
 
 **Solution**:
+
 ```bash
 # Check for locks
 az lock list --resource-group rg-monitoring-linux-uks
@@ -276,12 +286,14 @@ az group delete --name rg-monitoring-linux-uks --yes
 
 Before final cleanup, check for any active/fired alerts:
 
-### Portal
+### Portal Check for Active Alerts
+
 1. Azure Monitor → Alerts
 2. Filter: **State = Fired** or **New**
 3. Ensure no alerts related to your lab
 
-### CLI
+### CLI Check for Active Alerts
+
 ```bash
 # List all fired alerts
 az monitor metrics alert list \
@@ -297,6 +309,7 @@ az monitor metrics alert list \
 ### Learning Recap
 
 From this lab, you learned to:
+
 - Enable Azure Monitor VM Insights
 - Create metric-based alert rules
 - Configure action groups for notifications
@@ -306,6 +319,7 @@ From this lab, you learned to:
 ### Reusable Patterns
 
 In production, consider:
+
 - **Centralized monitoring**: Use a dedicated Log Analytics workspace
 - **Alert best practices**: Set thresholds based on baseline metrics
 - **Action group reuse**: Create shared action groups for teams
@@ -326,6 +340,7 @@ After cleanup, verify no charges:
 4. Ensure costs drop to $0 within 24 hours
 
 If charges continue, look for:
+
 - Orphaned disks
 - Log Analytics workspace
 - Unused alert rules

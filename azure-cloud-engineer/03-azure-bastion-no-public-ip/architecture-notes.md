@@ -16,7 +16,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 
 ## Architecture Overview
 
-```
+```text
 ┌──────────────────────────────────────────────────────────┐
 │  Your Laptop/Browser (HTTPS/TLS)                         │
 └────────────────────┬─────────────────────────────────────┘
@@ -57,7 +57,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 ### 1. VNet and Subnets
 
 - **VNet**: Any address space (e.g., `10.20.0.0/16`)
-- **AzureBastionSubnet**: 
+- **AzureBastionSubnet**:
   - **Name must be exactly**: `AzureBastionSubnet` (case-sensitive)
   - **Minimum size**: `/27` (32 addresses, but Azure reserves 5)
   - **Recommended**: `/26` (64 addresses) or larger for scalability
@@ -135,7 +135,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 ## Comparison: Bastion vs Traditional Access Methods
 
 | Feature | Public IP + NSG | Jump Box | Azure Bastion |
-|---------|-----------------|----------|---------------|
+| ------- | --------------- | -------- | ------------- |
 | **VM Public IP Required** | Yes | Yes (for jump box) | No |
 | **Management Overhead** | Medium | High (patch, secure) | Low (fully managed) |
 | **Cost** | Low ($4-5/month for static IP) | Medium (VM costs) | High (~$140/month) |
@@ -151,6 +151,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 ### When to Use Azure Bastion
 
 ✅ **Good for**:
+
 - Production environments requiring zero public IP exposure
 - Organizations with compliance requirements (no internet-facing VMs)
 - Temporary admin access without VPN infrastructure
@@ -158,6 +159,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 - Demos and labs where browser-based access is preferred
 
 ❌ **Not ideal for**:
+
 - Cost-sensitive labs or dev environments (use jump box or VPN instead)
 - Frequent, long-duration SSH/RDP sessions (Standard SKU helps)
 - Organizations already using VPN or ExpressRoute
@@ -176,6 +178,7 @@ Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH c
 ### AzureBastionSubnet NSG
 
 **Inbound**:
+
 ```text
 Priority 100: Allow 443 from Internet (user access via portal)
 Priority 110: Allow 443, 4443 from GatewayManager
@@ -183,6 +186,7 @@ Priority 120: Allow 8080 from VirtualNetwork (Bastion internal)
 ```
 
 **Outbound**:
+
 ```text
 Priority 100: Allow 22, 3389 to VirtualNetwork (SSH/RDP to VMs)
 Priority 110: Allow 443 to AzureCloud (Bastion telemetry)
@@ -192,12 +196,14 @@ Priority 120: Allow 80, 443 to Internet (Bastion certificate validation)
 ### Workload Subnet NSG
 
 **Inbound**:
+
 ```text
 Priority 100: Allow 22 from AzureBastionSubnet (SSH from Bastion)
 Priority 110: Deny 22 from Internet (no direct SSH)
 ```
 
 **Outbound**:
+
 ```text
 Default rules (allow VNet, Internet)
 ```
@@ -228,7 +234,7 @@ Default rules (allow VNet, Internet)
 
 ## Bastion in Enterprise Hub-Spoke Architecture
 
-```
+```text
         ┌─────────────────────────┐
         │     Hub VNet            │
         │  - Azure Bastion        │
@@ -250,6 +256,7 @@ Default rules (allow VNet, Internet)
 ```
 
 **Benefits**:
+
 - Single Bastion instance serves multiple VNets
 - Centralized access management
 - Lower overall cost (one Bastion vs. one per VNet)

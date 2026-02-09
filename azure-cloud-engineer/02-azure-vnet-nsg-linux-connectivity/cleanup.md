@@ -11,6 +11,7 @@
 5. Click **Delete**
 
 **Resources deleted**:
+
 - 2 Virtual Machines (mgmt VM, web VM)
 - 2 Network Interfaces
 - 2 Public IP Addresses
@@ -28,13 +29,16 @@
 If you want to keep the networking infrastructure for other labs:
 
 **Delete VMs:**
+
 1. Virtual machines → Select each VM → Delete
 2. Confirm deletion of associated disks, NICs, and public IPs
 
 **Delete NSGs (if needed):**
+
 1. Network security groups → Select each NSG → Delete
 
 **Delete VNet (if needed):**
+
 1. Virtual networks → Select VNet → Delete
 
 ---
@@ -103,6 +107,7 @@ az resource list --resource-group rg-azure-networking-linux-uks --output table
 ## Cost Considerations
 
 ⚠️ **Resources that incur charges**:
+
 - **VMs**: Charged hourly even when stopped (unless deallocated)
 - **Disks**: Storage costs continue even if VM is deallocated
 - **Public IP addresses**: Charged if static, or if dynamic but attached
@@ -119,10 +124,12 @@ az resource list --resource-group rg-azure-networking-linux-uks --output table
 If you want to pause the lab without deleting resources:
 
 ### Portal
+
 1. Virtual machines → Select VM → Stop
 2. Wait for status to show "Stopped (deallocated)"
 
 ### CLI
+
 ```bash
 az vm deallocate --resource-group rg-azure-networking-linux-uks --name <vm-name>
 ```

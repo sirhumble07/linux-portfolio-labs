@@ -13,6 +13,7 @@
 5. Click **Delete**
 
 **Resources deleted**:
+
 - Azure Bastion host
 - Virtual Machine (workload VM)
 - Network Interface
@@ -35,6 +36,7 @@ If you want to delete Bastion but keep the VM and VNet:
 4. Confirm deletion
 
 ⚠️ **Note**: After deleting Bastion, the VM will have **no public IP** and will be inaccessible unless you:
+
 - Add a public IP to the VM
 - Use another jump box
 - Deploy a new Bastion
@@ -128,20 +130,24 @@ az resource list --resource-group rg-bastion-linux-uks --output table
 ⚠️ **Azure Bastion is one of the more expensive Azure services**
 
 **Basic SKU**:
+
 - ~$0.19/hour = ~$140/month (US pricing, varies by region)
 - Charged for every hour deployed (even if not used)
 
 **Standard SKU**:
+
 - ~$0.19/hour base + usage-based charges
 - Supports features like IP-based connections, shareable links
 
 **Other Resources**:
+
 - **VM**: Hourly compute charges (even when stopped, unless deallocated)
 - **Disks**: Ongoing storage costs
 - **VNet**: Free (except peering if configured)
 - **Public IP for Bastion**: Included in Bastion cost
 
-**To minimize costs**: 
+**To minimize costs**:
+
 - Delete Bastion immediately after lab completion
 - Use Bastion only when needed (can't easily stop/start)
 
@@ -152,10 +158,12 @@ az resource list --resource-group rg-bastion-linux-uks --output table
 If you need to pause but keep Bastion infrastructure:
 
 ### Portal
+
 1. Virtual machines → Select VM → **Stop**
 2. Wait for status: "Stopped (deallocated)"
 
 ### CLI
+
 ```bash
 az vm deallocate --resource-group rg-bastion-linux-uks --name <vm-name>
 ```
@@ -171,6 +179,7 @@ az vm deallocate --resource-group rg-bastion-linux-uks --name <vm-name>
 **Symptoms**: Deletion takes a long time or fails
 
 **Solutions**:
+
 1. **Wait**: Bastion deletions can take 10-15 minutes
 2. **Check dependencies**: Ensure no VMs are actively using Bastion
 3. **Force delete subnet**: Sometimes the AzureBastionSubnet prevents VNet deletion
@@ -188,6 +197,7 @@ az network vnet subnet delete \
 **Cause**: Resources might be locked or have dependencies
 
 **Solution**:
+
 ```bash
 # Check for locks
 az lock list --resource-group rg-bastion-linux-uks
@@ -216,6 +226,7 @@ az group delete --name rg-bastion-linux-uks --yes
 ## Post-Cleanup Notes
 
 After deleting Bastion:
+
 - VMs without public IPs become inaccessible (as intended in this lab)
 - Consider alternative access methods for production:
   - VPN Gateway
