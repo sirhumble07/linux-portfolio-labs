@@ -317,4 +317,4 @@ az monitor diagnostic-settings create \
 
 Azure Bastion provides a **secure, managed, zero-public-IP** solution for VM access. It's ideal for production environments with compliance requirements, but comes at a higher cost. For labs and dev environments, consider using jump boxes or VPN for cost savings.
 
-**Key Takeaway**: Bastion **eliminates public IPs on VMs** while providing centralized, auditable, browser-based access—perfect for zero-trust security models.
+**Key Takeaway**: Bastion **eliminates public IPs on VMs** while providing centralized, auditable, browser-based access-perfect for zero-trust security models.
