@@ -5,7 +5,7 @@ packages:
   - curl
 
 users:
-  - name: labuser
+  - name: victor
     groups: sudo
     shell: /bin/bash
     sudo: "ALL=(ALL) NOPASSWD:ALL"
@@ -15,6 +15,10 @@ write_files:
     permissions: "0644"
     content: |
       <h1>Azure cloud-init lab</h1>
+      <p> This VM was configured automatically at boot. </p>
+
+      
+      <p> Created by Victor. </p>
 
 runcmd:
   - systemctl enable nginx
