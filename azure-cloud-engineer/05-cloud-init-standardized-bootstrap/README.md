@@ -1,6 +1,6 @@
 # Standardized Linux Bootstrap in Azure with cloud-init
 
-## What you will build
+## What I built
 
 A VM that bootstraps itself automatically:
 
