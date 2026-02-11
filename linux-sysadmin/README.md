@@ -13,7 +13,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-## 🔧 Skills Demonstrated
+## Skills Demonstrated
 
 - Linux user & group management
 - Role-based access control (RBAC)
@@ -28,9 +28,9 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-## 📁 Lab Overview
+## Lab Overview
 
-### 🧑‍💻 Lab 1 — Multi-User Linux Server (RBAC, Permissions & Sudo)
+### Lab 1 — Multi-User Linux Server (RBAC, Permissions & Sudo)
 
 **Folder:** `linux-sysadmin/01-multi-user-rbac-sudo`
 
@@ -50,7 +50,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-### 🌐 Lab 2 — Linux Web Server (Nginx + Firewall Hardening)
+### Lab 2 — Linux Web Server (Nginx + Firewall Hardening)
 
 **Folder:** `linux-sysadmin/02-nginx-or-apache-webserver`
 
@@ -70,7 +70,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-### 💾 Lab 3 — Automated Backups (rsync + cron + Restore Test)
+### Lab 3 — Automated Backups (rsync + cron + Restore Test)
 
 **Folder:** `linux-sysadmin/03-backups-cron-rsync-rotation`
 
@@ -91,7 +91,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-### 📄 Lab 4 — Log Management & Incident Simulation
+### Lab 4 — Log Management & Incident Simulation
 
 **Folder:** `linux-sysadmin/04-logs-troubleshooting-incident-sim`
 
@@ -114,7 +114,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-### 📊 Lab 5 — Monitoring, Performance & System Limits
+### Lab 5 — Monitoring, Performance & System Limits
 
 **Folder:** `linux-sysadmin/05-monitoring-performance-tuning`
 
@@ -135,7 +135,7 @@ This is not theoretical learning — it reflects how Linux systems are **actuall
 
 ---
 
-## 🧠 How This Maps to Real Jobs
+## How This Maps to Real Jobs
 
 These labs directly reflect responsibilities found in:
 
@@ -153,7 +153,7 @@ Every lab includes:
 
 ---
 
-## 🛡️ Security & Safety Notes
+## Security & Safety Notes
 
 - No secrets or private keys are committed
 - All environments are isolated lab systems
@@ -162,7 +162,7 @@ Every lab includes:
 
 ---
 
-## 🚀 What’s Next
+## What’s Next
 
 This Linux foundation is now being extended into:
 

@@ -92,7 +92,7 @@ This portfolio demonstrates **how Linux systems are actually deployed, secured, 
 
 ---
 
-### 🚨 Azure Lab 4 — Azure Monitoring & Alerts for Linux
+### Azure Lab 4 — Azure Monitoring & Alerts for Linux
 
 **Folder:** `azure-cloud-engineer/04-azure-monitoring-linux-alerts`
 
