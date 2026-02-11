@@ -96,7 +96,7 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
-### Validate
+### Validate group membership
 
 ```bash
 groups
@@ -157,7 +157,7 @@ Containers on the same custom network:
 - ✅ Are isolated from the default bridge network
 - ✅ Mirror real microservice networking patterns
 
-### Validate
+### Validate network creation
 
 ```bash
 docker network ls
@@ -186,7 +186,7 @@ docker volume create labdata
 - **Databases must use volumes** to persist data
 - Volumes are stored in `/var/lib/docker/volumes/`
 
-### Validate
+### Validate volume creation
 
 ```bash
 docker volume ls
@@ -218,7 +218,7 @@ docker run -d \
 ### Line-by-Line Explanation
 
 | Flag | Purpose |
-|------|---------|
+| ------ | --------- |
 | `-d` | Detached mode (runs in background) |
 | `--name lab-db` | Predictable container name |
 | `--network labnet` | Attach to custom network |
@@ -265,7 +265,7 @@ docker logs lab-db | tail -n 30
 - ❌ No "initdb" messages
 - ✅ PostgreSQL starts using existing data
 
-### This Proves:
+### This Proves
 
 Data lives in the **volume**, not the **container**.
 
@@ -332,7 +332,7 @@ docker run -d \
   postgres:16
 ```
 
-### Validate persistence
+### Validate data persistence
 
 ```bash
 docker logs lab-db | tail -n 20
