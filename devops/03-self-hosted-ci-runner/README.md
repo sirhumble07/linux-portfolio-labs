@@ -15,7 +15,7 @@ This lab demonstrates how to configure and manage a self-hosted GitHub Actions r
 
 ## Architecture
 
-![Architecture Diagram](assets/screenshots/GitHub-workflow-architecture.png)
+![Architecture Diagram](assets/screenshots/architecture.png)
 
 ```text
 ┌─────────────────────┐
