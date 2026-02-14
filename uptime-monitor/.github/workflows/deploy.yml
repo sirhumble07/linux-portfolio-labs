@@ -1,0 +1,44 @@
+name: ci  # Workflow name.
+
+on:  # Triggers.
+  push:  # Run on push.
+    branches: ["main"]  # Only main branch.
+  pull_request:  # Run on PRs.
+
+jobs:  # Job definitions.
+  test:  # Job id.
+    runs-on: ubuntu-latest  # GitHub hosted runner.
+    services:  # Service containers.
+      postgres:  # PostgreSQL service container.
+        image: postgres:16  # Postgres image.
+        env:  # Environment variables for Postgres.
+          POSTGRES_USER: app  # User.
+          POSTGRES_PASSWORD: app  # Password.
+          POSTGRES_DB: uptime  # DB name.
+        ports:  # Port mapping.
+          - 5432:5432  # Host:container port.
+        options: >-  # Health check for Postgres readiness.
+          --health-cmd="pg_isready -U app"  # Command to check health.
+          --health-interval=10s  # Interval.
+          --health-timeout=5s  # Timeout.
+          --health-retries=5  # Retries.
+
+    steps:  # Steps in job.
+      - name: Checkout  # Step name.
+        uses: actions/checkout@v4  # Checkout code.
+
+      - name: Set up Python  # Step name.
+        uses: actions/setup-python@v5  # Install Python.
+        with:  # Inputs.
+          python-version: "3.12"  # Python version.
+
+      - name: Install deps  # Step name.
+        run: pip install -r requirements.txt  # Install dependencies.
+
+      - name: Init DB  # Step name.
+        env:  # Environment variables for this step.
+          DATABASE_URL: postgresql+psycopg2://app:app@localhost:5432/uptime  # DB URL.
+        run: python -m app.init_db  # Initialize schema.
+
+      - name: Run tests  # Step name.
+        run: python -c "print('No tests yet')"  # Placeholder test command.
