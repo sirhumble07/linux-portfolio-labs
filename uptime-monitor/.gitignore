@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# SQLite database
+*.sqlite3
+uptime.db
+
+# Python egg info
+*.egg-info/
+dist/
+build/
+
+# Docker
+*.log
+
+# Node/npm (if ever used for frontend)
+node_modules/
+
+# Test and coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# GitHub Actions runner files
+.runner/
