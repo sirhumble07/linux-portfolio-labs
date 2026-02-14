@@ -111,7 +111,7 @@ Run cleanup:
 sudo ./scripts/cleanup_logs.sh
 ```
 
-📸 **Screenshot:** dry-run output + cleanup execution
+📸 **See Screenshot:** dry-run output + cleanup execution
 
 🔍 **Why this is written carefully:**
 
@@ -167,7 +167,7 @@ Validate:
 id devopsuser1
 ```
 
-📸 **Screenshot:** script execution + `id devopsuser1`
+📸 **See Screenshot:** script execution + `id devopsuser1`
 
 🔍 **Why this matters in real teams:**
 
@@ -192,4 +192,4 @@ Add this line:
 0 * * * * /home/<user>/devops/04-bash-ops-automation-toolkit/scripts/health_check.sh >> ~/health.log
 ```
 
-📸 **Screenshot:** crontab entry
+📸 **See Screenshot:** crontab entry

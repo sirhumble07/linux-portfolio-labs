@@ -1,239 +1,327 @@
-# 📁 Cloud & DevOps Engineering Portfolio  
+# Linux & DevOps Engineering Portfolio
 
-## Linux • Azure • DevOps • Real Application Deployment
+**Real infrastructure. Real deployments. Real skills.**
 
-This repository is a **hands-on engineering portfolio** demonstrating how modern infrastructure, cloud platforms, and DevOps practices work together in real environments.
+This repository demonstrates hands-on Linux system administration, cloud infrastructure, and DevOps engineering through **production-aligned labs** built on real systems.
 
-It is intentionally **lab-driven**, **production-aligned**, and **fully reproducible**.
+Every project is:
 
----
-
-## 🧠 How to Read This Repo
-
-This repository is structured in a **progressive, real-world order**:
-
-1. **Linux Sysadmin** – Operating system fundamentals  
-2. **Azure Cloud Engineer** – Cloud infrastructure & networking  
-3. **DevOps** – Automation, containers, CI/CD  
-4. **Real Application Deployment** – End-to-end system in production style  
-
-This mirrors how engineers actually **learn, build, and operate systems** in real jobs.
+- Implemented on actual Linux servers
+- Fully documented with step-by-step instructions
+- Validated with command output and screenshots
+- Designed around real-world engineering responsibilities
 
 ---
 
-## 🐧 Linux Sysadmin Labs (Foundation)
+## What This Portfolio Demonstrates
 
-📂 `linux-sysadmin/`
-
-These labs focus on **core Linux system administration**, the foundation of all cloud and DevOps roles.
-
-### Linux Labs
-
-- **Multi-user RBAC & sudo**
-  - Users, groups, ACLs, SetGID, controlled privilege escalation
-- **Web server deployment**
-  - Nginx, systemd, firewall configuration
-- **Automated backups**
-  - rsync, cron scheduling, restore validation
-- **Incident simulation & troubleshooting**
-  - Service failure, log analysis, root cause investigation
-- **Monitoring & performance tuning**
-  - CPU, memory, disk, limits, sysstat tools
-
-### Linux Skills Demonstrated
-
-- Linux permission model
-- Service lifecycle management
-- Log-based troubleshooting
-- Bash scripting
-- Defensive operations
-
-✅ Proves **real Linux understanding**, not just commands.
+| Skill Area | What I've Built |
+| ----------- | --------------- |
+| **Linux Sysadmin** | Multi-user RBAC, web servers, backups, incident response, monitoring |
+| **Azure Cloud** | Secure VMs, networking, NSGs, cloud-init, Bastion, monitoring |
+| **DevOps** | Docker, CI/CD runners, reverse proxy, Bash automation, security hardening |
+| **Application Deployment** | Full-stack app with FastAPI, PostgreSQL, workers, Nginx proxy |
 
 ---
 
-## ☁️ Azure Cloud Engineer Labs
+## Repository Structure
 
-📂 `azure-cloud-engineer/`
-
-These labs move Linux workloads into **real Azure environments** using enterprise patterns.
-
-### Azure Labs
-
-- **Secure Linux VM deployment**
-  - SSH keys only
-  - NSG-restricted access
-- **cloud-init automation**
-  - Zero-touch provisioning
-  - Standardized VM bootstrap
-- **Azure networking**
-  - VNets, subnets, NSGs
-  - Controlled east–west traffic
-- **Monitoring & alerts**
-  - Azure Monitor
-  - CPU and disk alerts
-- **Azure Bastion**
-  - Zero public IP access
-  - Enterprise admin pattern
-
-### Azure Skills Demonstrated
-
-- Azure VM security
-- Network segmentation
-- Cloud automation
-- Monitoring & alerting
-- Zero-trust access concepts
-
-✅ Proves **Linux + Cloud integration skills**.
+```text
+linux-portfolio-labs/
+├── linux-sysadmin/          # Foundation: Linux system administration
+├── azure-cloud-engineer/    # Cloud: Azure infrastructure & networking
+├── devops/                  # Automation: Containers, CI/CD, scripting
+└── uptime-monitor/          # Real App: Production-style deployment
+```
 
 ---
 
-## ⚙️ DevOps Labs (Automation & Delivery)
+## Linux System Administration
 
-📂 `devops/`
+**Location:** `linux-sysadmin/`
 
-These labs focus on **how systems are built, delivered, and operated**.
+Foundation skills for all cloud and DevOps work.
 
-### DevOps Labs
+### Labs Completed
 
-- **Docker host & containers**
-  - Networks, volumes, persistence
-- **Nginx reverse proxy**
-  - Path-based routing
-  - Failure simulation
-- **Self-hosted CI runner**
-  - GitHub Actions on Linux
-- **Bash automation toolkit**
-  - Health checks
-  - Log cleanup
-  - Idempotent user provisioning
-- **Linux security hardening**
-  - SSH, firewall, fail2ban
+#### 01 - Multi-User RBAC & sudo
 
-### DevOps Skills Demonstrated
+- Created users and groups with specific permissions
+- Implemented SetGID for shared directories
+- Configured sudo for controlled privilege escalation
+- **Skills:** Linux permissions, RBAC, ACLs
 
-- Containerization fundamentals
-- CI/CD execution environments
-- Automation mindset
-- DevSecOps basics
-- Failure recovery
+#### 02 - Web Server Deployment
 
-✅ Proves **operational DevOps competence**.
+- Deployed Nginx web server
+- Configured systemd service management
+- Implemented firewall rules (ufw)
+- **Skills:** Service lifecycle, networking, security
+
+#### 03 - Automated Backups
+
+- Implemented rsync-based backup automation
+- Scheduled with cron
+- Validated restore procedures
+- **Skills:** Backup strategies, cron, disaster recovery
+
+#### 04 - Incident Simulation & Troubleshooting
+
+- Simulated service failures
+- Analyzed logs with journalctl
+- Performed root cause analysis
+- **Skills:** Log analysis, debugging, incident response
+
+#### 05 - Performance Monitoring & Tuning
+
+- Monitored CPU, memory, disk I/O
+- Used sysstat tools
+- Identified and resolved bottlenecks
+- **Skills:** Performance analysis, system tuning
+
+### Why Linux Labs Matter
+
+These labs prove **real Linux understanding**, not just command memorization. This is the foundation that cloud platforms and containers run on.
 
 ---
 
-## 🚀 Real Application Deployment Project
+## Azure Cloud Engineering
 
-📂 `uptime-monitor/`
+**Location:** `azure-cloud-engineer/`
 
-A **production-style mini SaaS** that connects Linux, Azure, and DevOps into one system.
+Enterprise cloud infrastructure patterns on Azure.
 
-### What the App Does
+### Azure Labs Completed
 
-- User authentication
-- Add URLs to monitor
+#### 01 - Secure Linux VM Deployment
+
+- Deployed VMs with SSH key authentication only
+- Configured Network Security Groups (NSGs)
+- Implemented least-privilege access
+- **Skills:** VM security, network isolation
+
+#### 02 - Cloud-Init Automation
+
+- Automated VM provisioning with cloud-init
+- Zero-touch configuration
+- Standardized deployments
+- **Skills:** Infrastructure automation, consistency
+
+#### 03 - Azure Networking
+
+- Created VNets and subnets
+- Configured NSG rules
+- Implemented network segmentation
+- **Skills:** Cloud networking, traffic control
+
+#### 04 - Monitoring & Alerts
+
+- Set up Azure Monitor
+- Created CPU and disk alerts
+- Configured action groups
+- **Skills:** Observability, proactive monitoring
+
+#### 05 - Azure Bastion
+
+- Deployed secure admin access
+- Eliminated public IP exposure
+- Implemented zero-trust pattern
+- **Skills:** Secure access, compliance patterns
+
+### Why Azure Labs Matter
+
+These labs demonstrate **production cloud infrastructure** skills required in real Azure environments.
+
+---
+
+## ⚙️ DevOps Engineering
+
+**Location:** `devops/`
+
+Automation, containers, CI/CD, and security.
+
+### DevOps Labs Completed
+
+#### 01 - Linux Docker Host
+
+- Installed and configured Docker Engine
+- Created custom networks
+- Managed persistent volumes
+- Ran stateful containers (PostgreSQL)
+- **Skills:** Containerization, storage, networking
+
+#### 02 - Nginx Reverse Proxy
+
+- Configured path-based routing
+- Isolated backend services
+- Tested failure scenarios
+- Validated 502 error handling
+- **Skills:** Traffic routing, service isolation, troubleshooting
+
+#### 03 - Self-Hosted CI Runner
+
+- Deployed GitHub Actions runner on Linux
+- Registered to repository
+- Configured as systemd service
+- Tested failure recovery
+- **Skills:** CI/CD internals, pipeline execution, service management
+
+#### 04 - Bash Automation Toolkit
+
+- Created system health check scripts
+- Automated log cleanup safely
+- Built idempotent user provisioning
+- Implemented production-safe scripting
+- **Skills:** Bash scripting, automation, idempotency
+
+#### 05 - Linux Security Hardening
+
+- Hardened SSH (keys only, no root)
+- Configured UFW firewall
+- Implemented fail2ban
+- Created security audit checklist
+- **Skills:** DevSecOps, attack surface reduction, compliance
+
+### Why DevOps Labs Matter
+
+These labs demonstrate **operational DevOps competence** — how systems are built, deployed, secured, and maintained in real environments.
+
+---
+
+## Real Application Deployment
+
+**Location:** `uptime-monitor/`
+
+A production-style uptime monitoring application demonstrating end-to-end system ownership.
+
+### What It Does
+
+- Users log in and add URLs to monitor
 - Background worker checks uptime every 5 minutes
-- Results stored and displayed in a dashboard
+- Results stored in PostgreSQL
+- Dashboard displays status and history
 
 ### Architecture
 
+```text
 Internet
-|
-Nginx (reverse proxy + UI)
-|
+    ↓
+Nginx (reverse proxy + static UI)
+    ↓
 FastAPI (authentication + API)
-|
-Postgres (persistent data)
-|
+    ↓
+PostgreSQL (data persistence)
+    ↓
 Worker (scheduled checks)
+```
 
-### Technologies Used
+### Technologies
 
-- FastAPI (Python)
-- PostgreSQL
-- Background worker
-- Docker Compose
-- Nginx
-- GitHub Actions
-- Azure Virtual Machine
+- **Backend:** FastAPI (Python)
+- **Database:** PostgreSQL
+- **Worker:** Scheduled background processing
+- **Proxy:** Nginx
+- **Orchestration:** Docker Compose
+- **CI/CD:** GitHub Actions
+- **Infrastructure:** Azure Linux VM
+
+### CI/CD Pipeline
+
+1. Code pushed to GitHub
+2. GitHub Actions triggers workflow
+3. Self-hosted runner executes pipeline
+4. Runner SSHs to Azure VM
+5. VM pulls latest code
+6. Docker Compose rebuilds services
+7. Zero-downtime deployment
 
 ### Why This Project Matters
 
-Demonstrates:
+This demonstrates:
 
-- Multi-container orchestration
-- Stateful services
-- Scheduled background processing
-- Reverse proxy routing
-- CI/CD deployment to cloud infrastructure
-
-✅ Proves **end-to-end system ownership**.
-
----
-
-## 🔁 CI/CD Flow
-
-1. Code pushed to GitHub
-2. GitHub Actions triggers
-3. Self-hosted Linux runner executes pipeline
-4. Runner SSHs into Azure VM
-5. VM pulls latest code
-6. Docker Compose rebuilds and restarts services
-
-No abstractions. No shortcuts. **Real infrastructure behavior**.
+- ✅ Multi-container orchestration
+- ✅ Stateful service management
+- ✅ Background job processing
+- ✅ Reverse proxy configuration
+- ✅ Automated deployment to cloud
+- ✅ End-to-end system ownership
 
 ---
 
-## 🔐 Security & Best Practices
+## 🔐 Security Best Practices
 
-- SSH key-based authentication
-- Password logins disabled
-- Firewall-restricted access
-- fail2ban intrusion prevention
-- Secrets excluded from Git
-- Container isolation
-- Idempotent scripts
+Throughout all labs:
+
+- ✅ SSH key authentication only (no passwords)
+- ✅ Firewall rules restricting access
+- ✅ fail2ban for intrusion prevention
+- ✅ Secrets excluded from version control
+- ✅ Container isolation
+- ✅ Least-privilege access patterns
+- ✅ Network segmentation
 
 ---
 
-## 📌 How to Use This Repo
+## 📖 How to Use This Repository
 
 Each lab includes:
 
-- `README.md` — what and why
-- `steps.md` — how to build
-- `cleanup.md` — safe teardown
+- **README.md** - Overview and learning objectives
+- **steps.md** - Step-by-step implementation guide
+- **cleanup.md** - Safe teardown instructions
+- **Screenshots** - Validation evidence
 
 Everything is:
 
-- Reproducible
-- Auditable
-- Production-aligned
+- ✅ Reproducible
+- ✅ Well-documented
+- ✅ Production-aligned
+- ✅ Security-conscious
 
 ---
 
-## 🧭 What This Portfolio Demonstrates
+## 🎓 Skills Progression
 
-✔ Linux fundamentals  
-✔ Azure cloud infrastructure  
-✔ DevOps automation  
-✔ Security awareness  
-✔ Real application deployment  
-✔ Structured problem-solving  
+This portfolio follows a **logical learning path**:
+
+1. **Linux Foundation** → Core OS and system administration
+2. **Cloud Infrastructure** → Azure platform and networking
+3. **DevOps Practices** → Automation, containers, CI/CD
+4. **Real Application** → End-to-end system deployment
+
+This mirrors how engineers **actually build and operate systems** in real jobs.
 
 ---
 
-## 🧩 Future Extensions (Optional)
+## Future Enhancements
 
-- HTTPS with Let’s Encrypt
-- Terraform or Bicep
-- Kubernetes version
-- Prometheus & Grafana
+Potential additions:
+
+- HTTPS with Let's Encrypt
+- Infrastructure as Code (Terraform/Bicep)
+- Kubernetes deployment
+- Prometheus & Grafana monitoring
 - Azure Key Vault integration
+- Multi-region deployment
 
 ---
 
-### Final Note
+## What This Portfolio Proves
 
-This repository is **not a tutorial dump**.  
-It is a **real engineering portfolio** showing how systems work end to end.
+| Role | Demonstrated Skills |
+| ---- | ----------------- |
+| **Linux Engineer** | System administration, troubleshooting, automation |
+| **Cloud Engineer** | Azure infrastructure, networking, security |
+| **DevOps Engineer** | CI/CD, containers, scripting, deployment |
+| **Platform Engineer** | Service orchestration, automation, monitoring |
+
+---
+
+## Contact
+
+**Victor Nwoke**  
+[Email]<victornwoke147@outlook.com> • [LinkedIn](https://www.linkedin.com/in/victornwoke/) • [GitHub](https://github.com/sirhumble07/)
+
+---
+
+**This is not a tutorial collection. This is a working engineering portfolio demonstrating real infrastructure skills.**
