@@ -320,7 +320,7 @@ Potential additions:
 ## Contact
 
 **Victor Nwoke**  
-[Email] <victornwoke147@outlook.com> • [LinkedIn](https://www.linkedin.com/in/victornwoke/) • [GitHub](https://github.com/sirhumble07/)
+[Email](mailto:victornwoke147@outlook.com) • [LinkedIn](https://www.linkedin.com/in/victornwoke/) • [GitHub](https://github.com/sirhumble07/)
 
 ---
 
