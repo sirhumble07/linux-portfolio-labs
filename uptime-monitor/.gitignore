@@ -46,3 +46,4 @@ actions-runner
 ../linux-portfolio-labs-mirror/
 linux-portfolio-labs-mirror
 actions-runner-linux-x64-2.303.0.tar.gz
+.env.example
