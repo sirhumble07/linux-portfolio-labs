@@ -41,3 +41,8 @@ htmlcov/
 
 # GitHub Actions runner files
 .runner/
+actions-runner/
+actions-runner
+../linux-portfolio-labs-mirror/
+linux-portfolio-labs-mirror
+actions-runner-linux-x64-2.303.0.tar.gz
