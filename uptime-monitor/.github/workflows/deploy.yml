@@ -1,6 +1,7 @@
 name: ci  # Workflow name.
 
 on:  # Triggers.
+  workflow_dispatch:  # Manual trigger.
   push:  # Run on push.
     branches: ["main"]  # Only main branch.
   pull_request:  # Run on PRs.
