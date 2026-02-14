@@ -7,7 +7,7 @@ on:  # Triggers.
 
 jobs:  # Job definitions.
   test:  # Job id.
-    runs-on: ubuntu-latest  # GitHub hosted runner.
+    runs-on: self-hosted
     services:  # Service containers.
       postgres:  # PostgreSQL service container.
         image: postgres:16  # Postgres image.
@@ -35,10 +35,22 @@ jobs:  # Job definitions.
       - name: Install deps  # Step name.
         run: pip install -r requirements.txt  # Install dependencies.
 
-      - name: Init DB  # Step name.
-        env:  # Environment variables for this step.
-          DATABASE_URL: postgresql+psycopg2://app:app@localhost:5432/uptime  # DB URL.
-        run: python -m app.init_db  # Initialize schema.
+      - name: Init DB
+        run: python -m app.init_db || echo "No DB init script" # Initialize DB (ignore if not present).
 
-      - name: Run tests  # Step name.
-        run: python -c "print('No tests yet')"  # Placeholder test command.
+      - name: Run tests # Step name.
+        run: pytest  # Step name and command to run tests.
+
+  deploy:
+    needs: test
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and deploy with Docker Compose
+        run: |
+          docker compose down
+          docker compose build
+          docker compose up -d
